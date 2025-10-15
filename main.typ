@@ -72,7 +72,7 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #v(6pt)
 
 // Insert the emails
-#let emails = ("danielh@ifc.edu.br", "edu.forget@ifc.edu.br", "josekahl@ifc.edu.br")
+#let emails = ("daniel@ifc.edu.br", "eduardo@ifc.edu.br", "jose@ifc.edu.br")
 
 // Script to generate formated emails
 #let counter = 1
