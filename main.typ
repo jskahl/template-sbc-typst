@@ -23,13 +23,18 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 
 #set par(
   justify: true,
-  spacing: 6pt,
+  spacing: 10pt,
+  first-line-indent: 3em,
 )
 
 #set heading(
   numbering: "1.",
 )
 
+// Set custom size values to heading
+#show heading.where(level: 1): set text(size: 14pt)
+#show heading.where(level: 2): set text(size: 13pt)
+#show heading.where(level: 3): set text(size: 12pt)
 
 #align(center)[
   #text(size: 16pt)[
@@ -97,8 +102,9 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #v(6pt)
 
 #align(center, block(width: 21cm - 8.2cm)[
-  // Abstract
   #set align(left)
+
+  // Abstract
   #text(style: "italic")[
     *Abstract.*
     This meta-paper describes the style to be used in articles and short papers for SBC conferences. For papers in English, you should add just an abstract while for the papers in Portuguese, we also ask for an abstract in Portuguese (``resumo''). In both cases, abstracts should not have more than 10 lines and must be in the first page of the paper.
@@ -107,8 +113,34 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   \
 
   // Resumo
-  #text(style: "italic")[
+  #text(style: "italic", par(first-line-indent: 0em)[
     *Resumo.*
     Este meta-artigo descreve o estilo a ser usado na confecção de artigos e resumos de artigos para publicação nos anais das conferências organizadas pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos escritos em português. Artigos em inglês deverão apresentar apenas abstract. Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira página do artigo.
-  ]
+  ])
 ])
+
+\
+
+= General Information
+All full papers and posters (short papers) submitted to some SBC conference, including any supporting documents, should be written in English or in Portuguese. The format paper should be A4 with single column, 3.5 cm for upper margin, 2.5 cm for bottom margin and 3.0 cm for lateral margins, without headers or footers. The main font must be Times, 12 point nominal size, with 6 points of space before each paragraph. Page numbers must be suppressed.
+
+Full papers must respect the page limits defined by the conference. Conferences that publish just abstracts ask for *one*-page texts.
+
+= First Page
+The first page must display the paper title, the name and address of the authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are required only for papers written in Portuguese). The title must be centered over the whole page, in 16 point boldface font and with 12 points of space before itself. Author names must be centered in 12 point font, bold, all of them disposed in the same line, separated by commas and with 12 points of space after the title. Addresses must be centered in 12 point font, also with 12 points of space after the authors' names. E-mail addresses should be written using font Courier New, 10 point nominal size, with 6 points of space before and 6 points of space after.
+
+
+The abstract and ``resumo'' (if is the case) must be in 12 point Times font, indented 0.8cm on both sides. The word *Abstract* and *Resumo*, should be written in boldface and must precede the text.
+
+= CD-ROMs and Printed Proceedings
+In some conferences, the papers are published on CD-ROM while only the abstract is published in the printed Proceedings. In this case, authors are invited to prepare two final versions of the paper. One, complete, to be published on the CD and the other, containing only the first page, with abstract and ``resumo'' (for papers in Portuguese).
+
+= Sections and Paragraphs
+Section titles must be in boldface, 13pt, flush left. There should be an extra 12 pt of space before each title. Section numbering is optional. The first paragraph of each section should not be indented, while the first lines of subsequent paragraphs should be indented by 1.27 cm.
+
+== Subsections
+The subsection titles must be in boldface, 12pt, flush left.
+
+= Figures and Captions
+Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+
