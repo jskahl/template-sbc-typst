@@ -24,7 +24,7 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #set par(
   justify: true,
   spacing: 10pt,
-  first-line-indent: 3em,
+  first-line-indent: 1.27cm,
 )
 
 #set heading(
@@ -32,9 +32,24 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 )
 
 // Set custom size values to heading
-#show heading.where(level: 1): set text(size: 14pt)
-#show heading.where(level: 2): set text(size: 13pt)
+#show heading.where(level: 1): set text(size: 13pt)
+#show heading.where(level: 2): set text(size: 12pt)
 #show heading.where(level: 3): set text(size: 12pt)
+#show heading.where(level: 4): set text(size: 12pt)
+#show heading.where(level: 5): set text(size: 12pt)
+#show heading.where(level: 6): set text(size: 12pt)
+
+#show figure.caption: set text(
+    font: "CaskaydiaCove NF",
+    weight: "bold",
+    size: 10pt,
+  )
+#show figure.caption: set block(inset: (y: 6pt))
+#show figure.caption: set align(left)
+
+#set figure.caption(
+  separator: ". ",
+)
 
 #align(center)[
   #text(size: 16pt)[
@@ -106,16 +121,14 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 
   // Abstract
   #text(style: "italic")[
-    *Abstract.*
-    This meta-paper describes the style to be used in articles and short papers for SBC conferences. For papers in English, you should add just an abstract while for the papers in Portuguese, we also ask for an abstract in Portuguese (``resumo''). In both cases, abstracts should not have more than 10 lines and must be in the first page of the paper.
+    *Abstract.* This meta-paper describes the style to be used in articles and short papers for SBC conferences. For papers in English, you should add just an abstract while for the papers in Portuguese, we also ask for an abstract in Portuguese (``resumo''). In both cases, abstracts should not have more than 10 lines and must be in the first page of the paper.
   ]
 
   \
 
   // Resumo
   #text(style: "italic", par(first-line-indent: 0em)[
-    *Resumo.*
-    Este meta-artigo descreve o estilo a ser usado na confecção de artigos e resumos de artigos para publicação nos anais das conferências organizadas pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos escritos em português. Artigos em inglês deverão apresentar apenas abstract. Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira página do artigo.
+    *Resumo.* Este meta-artigo descreve o estilo a ser usado na confecção de artigos e resumos de artigos para publicação nos anais das conferências organizadas pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos escritos em português. Artigos em inglês deverão apresentar apenas abstract. Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract) não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira página do artigo.
   ])
 ])
 
@@ -142,5 +155,6 @@ Section titles must be in boldface, 13pt, flush left. There should be an extra 1
 The subsection titles must be in boldface, 12pt, flush left.
 
 = Figures and Captions
-Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption. #figure(image("fig1.jpg"), caption: [A typical figure])
 
+In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure( image("fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
