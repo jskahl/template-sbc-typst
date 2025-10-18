@@ -37,6 +37,10 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   ),
 )
 
+#set table.cell(
+  breakable: true,
+)
+
 #show table: set text(
   font: "Helvetica",
   size: 10pt,
@@ -167,9 +171,9 @@ Section titles must be in boldface, 13pt, flush left. There should be an extra 1
 The subsection titles must be in boldface, 12pt, flush left.
 
 = Figures and Captions
-Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption. #figure(image("fig1.jpg"), caption: [A typical figure])
+Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption. #figure(image("img/fig1.jpg"), caption: [A typical figure])
 
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure(image("fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure(image("img/fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
 
 #table(
   columns: 3,
