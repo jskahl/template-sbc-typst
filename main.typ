@@ -31,6 +31,18 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   numbering: "1.",
 )
 
+#set table(
+  align: (x, y) => (
+    if x > 0 or y == 0 { center } else { left }
+  ),
+)
+
+#show table: set text(
+  font: "Helvetica",
+  size: 10pt,
+)
+
+
 // Set custom size values to heading
 #show heading.where(level: 1): set text(size: 13pt)
 #show heading.where(level: 2): set text(size: 12pt)
@@ -40,10 +52,10 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #show heading.where(level: 6): set text(size: 12pt)
 
 #show figure.caption: set text(
-    font: "CaskaydiaCove NF",
-    weight: "bold",
-    size: 10pt,
-  )
+  font: "Helvetica",
+  weight: "bold",
+  size: 10pt,
+)
 #show figure.caption: set block(inset: (y: 6pt))
 #show figure.caption: set align(left)
 
@@ -157,4 +169,14 @@ The subsection titles must be in boldface, 12pt, flush left.
 = Figures and Captions
 Figure and table captions should be centered if less than one line (Figure 1), otherwise justified and indented by 0.8cm on both margins, as shown in Figure 2. The caption font must be Helvetica, 10 point, boldface, with 6 points of space before and after each caption. #figure(image("fig1.jpg"), caption: [A typical figure])
 
-In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure( image("fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure(image("fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
+
+#table(
+  columns: 3,
+
+  table.header([kdjgsldkfhg], [Chessboard top view], [Chessboard perspective view]),
+  [Selection with side movements], $6.02 plus.minus 5.22$, $7.01 plus.minus 6.84$,
+  [Selection with indepth movements], $6.29 plus.minus 4.99$, $12.22 plus.minus 11.33$,
+  [Manipulation with side movements], $4.66 plus.minus 4.94$, $3.47 plus.minus 2.20$,
+  [Manipulation with indepth movements], $5.71 plus.minus 4.55$, $5.37 plus.minus 3.28$,
+)
