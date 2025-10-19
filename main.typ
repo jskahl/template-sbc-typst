@@ -205,7 +205,7 @@ In tables, try to avoid the use of colored or shaded backgrounds, and avoid thic
 #table-with-caption(
   3,
   (
-    [kdjgsldkfhg],
+    [],
     [Chessboard top view],
     [Chessboard perspective view],
     [Selection with side movements],
@@ -232,10 +232,9 @@ Bibliographic references must be unambiguous and uniform. We recommend giving th
 
 The references must be listed using 12 point font size, with 6 points of space before each reference. The first line of each reference should not be indented, while the subsequent should be indented by 0.5 cm.
 
-#let bib = bibliography("sbc-template.bib", style: "ieee")
-
+#pagebreak()
 #bibliography(
   "bib/sbc-template.bib", 
-  style: "apa",
+  style: "bib/sbc-apalike.csl",
   title: "References",
 )
