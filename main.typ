@@ -233,6 +233,8 @@ Bibliographic references must be unambiguous and uniform. We recommend giving th
 The references must be listed using 12 point font size, with 6 points of space before each reference. The first line of each reference should not be indented, while the subsequent should be indented by 0.5 cm.
 
 #pagebreak()
+
+#set par(spacing: 12pt)
 #bibliography(
   "bib/sbc-template.bib", 
   style: "bib/sbc-apalike.csl",
