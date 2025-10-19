@@ -31,21 +31,46 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   numbering: "1.",
 )
 
+// Set table customization
 #set table(
   align: (x, y) => (
     if x > 0 or y == 0 { center } else { left }
   ),
 )
-
 #set table.cell(
   breakable: true,
 )
-
+#show table.cell: it => {
+  if it.y == 0 {
+    pad(it, x: 15pt, y: 12pt)
+  } else {
+    pad(it, x: 9pt, y: 8pt)
+  }
+}
 #show table: set text(
   font: "Helvetica",
   size: 10pt,
 )
-
+// Function to call a table with a caption
+#let table-counter = counter("table-counter") // Init table counter
+#let table-with-caption(cols, cells, caption) = {
+  align(center)[
+      #block(width: 13cm)[
+    #v(6pt)
+    #table-counter.step() // Increment counter in 1 for table counting
+    // Caption
+    #align(center)[
+      #text(weight: "bold", font: "Helvetica", size: 10pt)[Table #context table-counter.display(). #caption]
+    ]
+    #v(6pt)
+    // Table
+    #table(
+      columns: cols,
+      ..cells
+    )
+    ]
+  ]
+}
 
 // Set custom size values to heading
 #show heading.where(level: 1): set text(size: 13pt)
@@ -66,6 +91,8 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #set figure.caption(
   separator: ". ",
 )
+
+
 
 #align(center)[
   #text(size: 16pt)[
@@ -175,12 +202,40 @@ Figure and table captions should be centered if less than one line (Figure 1), o
 
 In tables, try to avoid the use of colored or shaded backgrounds, and avoid thick, doubled, or unnecessary framing lines. When reporting empirical data, do not use more #figure(image("img/fig2.jpg"), caption: [This figure is an example of a figure caption taking more than one line and justified considering margins mentioned in Section 5.]) decimal digits than warranted by their precision and reproducibility. Table caption must be placed before the table (see Table 1) and the font used must also be Helvetica, 10 point, boldface, with 6 points of space before and after each caption.
 
-#table(
-  columns: 3,
+#table-with-caption(
+  3,
+  (
+    [kdjgsldkfhg],
+    [Chessboard top view],
+    [Chessboard perspective view],
+    [Selection with side movements],
+    $6.02 plus.minus 5.22$,
+    $7.01 plus.minus 6.84$,
+    [Selection with indepth movements],
+    $6.29 plus.minus 4.99$,
+    $12.22 plus.minus 11.33$,
+    [Manipulation with side movements],
+    $4.66 plus.minus 4.94$,
+    $3.47 plus.minus 2.20$,
+    [Manipulation with indepth movements],
+    $5.71 plus.minus 4.55$,
+    $5.37 plus.minus 3.28$,
+  ),
+  [This is my table caption],
+)
 
-  table.header([kdjgsldkfhg], [Chessboard top view], [Chessboard perspective view]),
-  [Selection with side movements], $6.02 plus.minus 5.22$, $7.01 plus.minus 6.84$,
-  [Selection with indepth movements], $6.29 plus.minus 4.99$, $12.22 plus.minus 11.33$,
-  [Manipulation with side movements], $4.66 plus.minus 4.94$, $3.47 plus.minus 2.20$,
-  [Manipulation with indepth movements], $5.71 plus.minus 4.55$, $5.37 plus.minus 3.28$,
+= Images
+All images and illustrations should be in black-and-white, or gray tones, excepting for the papers that will be electronically available (on CD-ROMs, internet, etc.). The image resolution on paper should be about 600 dpi for black-and-white images, and 150-300 dpi for grayscale images.  Do not include images with excessive resolution, as they may take hours to print, without any visible difference in the result.
+
+= References
+Bibliographic references must be unambiguous and uniform. We recommend giving the author names references in brackets, e.g. @knuth:84, @boulic:91, and @smith:99. 
+
+The references must be listed using 12 point font size, with 6 points of space before each reference. The first line of each reference should not be indented, while the subsequent should be indented by 0.5 cm.
+
+#let bib = bibliography("sbc-template.bib", style: "ieee")
+
+#bibliography(
+  "bib/sbc-template.bib", 
+  style: "apa",
+  title: "References",
 )
