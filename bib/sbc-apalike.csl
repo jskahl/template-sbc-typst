@@ -27,32 +27,32 @@
     <category citation-format="author-date"/>
     <category field="psychology"/>
     <category field="generic-base"/>
-    <updated>2025-10-19T17:30:12+00:00</updated>
+    <updated>2025-10-19T23:15:36+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
     <terms>
-      <term name="editortranslator" form="short">
-        <single>ed. &amp; trans.</single>
-        <multiple>eds. &amp; trans.</multiple>
+      <term name="editor" form="short">
+        <single>editor</single>
+        <multiple>editors</multiple>
       </term>
       <term name="translator" form="short">
-        <single>trans.</single>
-        <multiple>trans.</multiple>
+        <single>translator</single>
+        <multiple>translators</multiple>
       </term>
     </terms>
   </locale>
   <macro name="container-contributors">
     <choose>
       <if type="chapter paper-conference entry-dictionary entry-encyclopedia" match="any">
-        <group delimiter=", " suffix=", ">
-          <names variable="container-author" delimiter=", ">
+        <group delimiter=", ">
+          <names variable="container-author" delimiter=" ">
             <name and="symbol" initialize-with=". "/>
-            <label form="short" text-case="title" prefix=" "/>
+            <label form="short" prefix=" (" text-case="lowercase" suffix=")"/>
           </names>
-          <names variable="editor translator" delimiter=",  " suffix=",">
-            <name suffix="." and="text" initialize-with=". "/>
-            <label text-case="lowercase" prefix="., "/>
+          <names variable="editor translator" delimiter=", " suffix=", ">
+            <name and="text" initialize-with=". "/>
+            <label text-case="lowercase" prefix=", "/>
           </names>
         </group>
       </if>
@@ -61,14 +61,14 @@
   <macro name="secondary-contributors">
     <choose>
       <if type="article-journal chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
-        <group delimiter=", " prefix=" ">
+        <group delimiter=", " prefix="In " suffix=" ">
           <names variable="container-author" delimiter=", ">
-            <name and="symbol" initialize-with=". " delimiter=", "/>
-            <label form="short" prefix=", " text-case="title"/>
+            <name and="symbol" initialize-with=". "/>
+            <label form="short" prefix=", " text-case="lowercase"/>
           </names>
-          <names variable="editor translator" delimiter=", ">
-            <name and="symbol" initialize-with=". " delimiter=", "/>
-            <label form="short" prefix=", " text-case="title"/>
+          <names variable="editor translator" delimiter=", " suffix=", ">
+            <name and="text" delimiter=" " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all"/>
+            <label form="short" prefix=" " text-case="lowercase"/>
           </names>
         </group>
       </if>
@@ -76,7 +76,7 @@
   </macro>
   <macro name="author">
     <names variable="author">
-      <name delimiter=" " and="text" delimiter-precedes-last="always" initialize-with="." name-as-sort-order="all"/>
+      <name and="text" delimiter=" " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all"/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
       <substitute>
         <names variable="editor"/>
@@ -95,7 +95,7 @@
   </macro>
   <macro name="author-short">
     <names variable="author">
-      <name form="short" and="text" et-al-min="3" initialize-with=". "/>
+      <name form="short" and="text" initialize-with=". "/>
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
@@ -313,6 +313,19 @@
                 <date-part name="year"/>
               </date>
               <text variable="year-suffix"/>
+              <choose>
+                <if type="speech" match="any">
+                  <date variable="issued">
+                    <date-part prefix=", " name="month"/>
+                  </date>
+                </if>
+                <else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song dataset" match="none">
+                  <date variable="issued">
+                    <date-part prefix=", " name="month"/>
+                    <date-part prefix=" " name="day"/>
+                  </date>
+                </else-if>
+              </choose>
             </group>
           </if>
           <else-if variable="status">
@@ -466,9 +479,14 @@
     <choose>
       <if type="post-weblog webpage" match="none">
         <group>
+          <choose>
+            <if type="chapter paper-conference entry-encyclopedia" match="any">
+              <text term="in" text-case="capitalize-first" suffix=" "/>
+            </if>
+          </choose>
           <text macro="container-contributors"/>
-          <text macro="secondary-contributors" prefix="In "/>
-          <text macro="container-title" prefix=" "/>
+          <text macro="secondary-contributors"/>
+          <text macro="container-title"/>
         </group>
       </if>
     </choose>
@@ -531,7 +549,7 @@
       <key macro="author"/>
       <key macro="issued-sort"/>
     </sort>
-    <layout delimiter="; " prefix=" [" suffix="]">
+    <layout delimiter="; " prefix="[" suffix="]">
       <group delimiter=", ">
         <text macro="author-short"/>
         <text macro="issued-year"/>
@@ -546,7 +564,7 @@
       <key macro="title"/>
     </sort>
     <layout>
-      <group suffix=".">
+      <group suffix=". ">
         <group delimiter=". ">
           <text macro="author"/>
           <text macro="issued"/>
