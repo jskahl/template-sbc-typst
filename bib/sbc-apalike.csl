@@ -52,7 +52,7 @@
           </names>
           <names variable="editor translator" delimiter=", " suffix=", ">
             <name and="text" initialize-with=". "/>
-            <label text-case="lowercase" prefix=", "/>
+            <label text-case="lowercase" prefix=", " suffix=", "/>
           </names>
         </group>
       </if>
@@ -61,14 +61,14 @@
   <macro name="secondary-contributors">
     <choose>
       <if type="article-journal chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
-        <group delimiter=", " prefix="In " suffix=" ">
-          <names variable="container-author" delimiter=", ">
+        <group delimiter=", " prefix="In " suffix=", ">
+          <names variable="container-author" delimiter=", " suffix=", ">
             <name and="symbol" initialize-with=". "/>
             <label form="short" prefix=", " text-case="lowercase"/>
           </names>
           <names variable="editor translator" delimiter=", " suffix=", ">
             <name and="text" delimiter=" " delimiter-precedes-last="always" initialize-with=". " name-as-sort-order="all"/>
-            <label form="short" prefix=" " text-case="lowercase"/>
+            <label form="short" prefix=", " text-case="lowercase"/>
           </names>
         </group>
       </if>
