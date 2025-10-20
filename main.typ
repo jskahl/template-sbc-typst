@@ -5,6 +5,19 @@ originally written in LaTeX:
 https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 */
 
+
+/*
+The fonts used in this template are problably not
+in the Typst compiler, so you will need to reference
+them in all of the 'font: "font"' fields across the
+file.
+I will comment it when necessary.
+*/
+
+
+/*
+Customization according to the template
+*/
 #set page(
   paper: "a4",
   margin: (
@@ -17,7 +30,7 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 
 #set text(
   size: 12pt,
-  font: "Times New Roman", // It needs a .ttf in this directory (if you are in the Typst web app) to work or else you will need the Times font installed in your system.
+  font: "Times New Roman", // Reference the file in "fonts/times-new-roman.ttf"
   tracking: -0.2pt,
 )
 
@@ -25,10 +38,6 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   justify: true,
   spacing: 10pt,
   first-line-indent: 1.27cm,
-)
-
-#set heading(
-  numbering: "1.",
 )
 
 // Set table customization
@@ -48,31 +57,53 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
   }
 }
 #show table: set text(
-  font: "Helvetica",
+  font: "Helvetica", // Reference the file in "fonts/heltica.ttf"
   size: 10pt,
 )
-// Function to call a table with a caption
+
+
+// Table with caption
+// This function simulates a table with a caption above it.
+
+/*
+Call it like this:
+#table-caption(quantity_of_columns, array_of_cells, caption)
+
+The array_of_cells must be between () and the items
+must be between [], as in a Typst common table.
+*/
+
 #let table-counter = counter("table-counter") // Init table counter
 #let table-with-caption(cols, cells, caption) = {
   align(center)[
-      #block(width: 13cm)[
-    #v(6pt)
-    #table-counter.step() // Increment counter in 1 for table counting
-    // Caption
-    #align(center)[
-      #text(weight: "bold", font: "Helvetica", size: 10pt)[Table #context table-counter.display(). #caption]
-    ]
-    #v(6pt)
-    // Table
-    #table(
-      columns: cols,
-      ..cells
-    )
+    #block(width: 13cm)[
+      #v(6pt)
+      #table-counter.step() // Increment counter in 1 for table counting
+
+      // Caption
+      #align(center)[
+        #text(
+          weight: "bold",
+          font: "Helvetica", // Reference the file in "fonts/heltica.ttf"
+          size: 10pt,
+        )[Table #context table-counter.display(). #caption]
+      ]
+
+      #v(6pt)
+      // Table
+      #table(
+        columns: cols,
+        ..cells
+      )
     ]
   ]
 }
 
-// Set custom size values to heading
+
+// Set heading customization
+#set heading(
+  numbering: "1.",
+)
 #show heading.where(level: 1): set text(size: 13pt)
 #show heading.where(level: 2): set text(size: 12pt)
 #show heading.where(level: 3): set text(size: 12pt)
@@ -80,20 +111,32 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 #show heading.where(level: 5): set text(size: 12pt)
 #show heading.where(level: 6): set text(size: 12pt)
 
+
+// Set figure customization
 #show figure.caption: set text(
   font: "Helvetica",
   weight: "bold",
   size: 10pt,
 )
+#show figure.caption: set par(justify: true)
 #show figure.caption: set block(inset: (y: 6pt))
-#show figure.caption: set align(left)
-
 #set figure.caption(
   separator: ". ",
 )
 
 
 
+
+/*
+============================================
+=            START OF DOCUMENT             =
+============================================
+*/
+
+
+
+
+// Title
 #align(center)[
   #text(size: 16pt)[
     *Instructions for Authors of SBC Conferences
@@ -123,9 +166,7 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 // Adresses
 // Insert the adresses
 #let adresses = (
-  ("Instituto Federal Catarinense – Universidade Federal do Rio Grande do Sul (UFRGS)", "Araquari – SC – Brazil"),
-  //("Add your university name here", "Add your university adress here"),
-  //("Add your university name here", "Add your university adress here"),
+  ("Instituto Federal Catarinense – Câmpus Araquari (IFC)", "Araquari – SC – Brazil"),
 )
 
 // Script to generate formated adresses
@@ -159,6 +200,7 @@ https://www.overleaf.com/latex/templates/sbc-conferences-template/blbxwjwzdngr
 
 #v(6pt)
 
+// Abstract and Resumo
 #align(center, block(width: 21cm - 8.2cm)[
   #set align(left)
 
@@ -228,15 +270,23 @@ In tables, try to avoid the use of colored or shaded backgrounds, and avoid thic
 All images and illustrations should be in black-and-white, or gray tones, excepting for the papers that will be electronically available (on CD-ROMs, internet, etc.). The image resolution on paper should be about 600 dpi for black-and-white images, and 150-300 dpi for grayscale images.  Do not include images with excessive resolution, as they may take hours to print, without any visible difference in the result.
 
 = References
-Bibliographic references must be unambiguous and uniform. We recommend giving the author names references in brackets, e.g. @knuth:84, @boulic:91, and @smith:99. 
+Bibliographic references must be unambiguous and uniform. We recommend giving the author names references in brackets, e.g. @knuth:84, @boulic:91, and @smith:99.
 
 The references must be listed using 12 point font size, with 6 points of space before each reference. The first line of each reference should not be indented, while the subsequent should be indented by 0.5 cm.
 
+
+// References page
+
+/*
+You can make a reference inline by calling the author name
+followed by a collon and the year in the reference.
+All references must be in the bib/references.bib
+*/
 #pagebreak()
 
 #set par(spacing: 12pt)
 #bibliography(
-  "bib/sbc-template.bib", 
+  "bib/sbc-template.bib",
   style: "bib/sbc-apalike.csl",
   title: "References",
 )
